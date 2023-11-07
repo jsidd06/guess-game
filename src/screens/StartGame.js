@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
   rootContainer: {
     marginTop: 100,
     marginHorizontal: 14,
-    backgroundColor: "#4e0329",
+    backgroundColor: "#3b021f",
     padding: 16,
     elevation: 4,
     shadowColor: "#000",
