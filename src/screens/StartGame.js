@@ -37,14 +37,17 @@ const styles = StyleSheet.create({
   input: {
     width: 50,
     borderBottomWidth: 1,
-    borderBottomColor: "#fff",
+    borderBottomColor: "#ddb52f",
     padding: 10,
-    color: "#fff",
-    fontSize: 16,
+    color: "#ddb52f",
+    fontSize: 25,
     fontWeight: "500",
   },
   btnCtn: {
-    flexDirection: "column",
+    flexDirection: "row",
+    justifyContent: "space-around",
+    marginHorizontal: 10,
     marginVertical: 10,
+    alignItems: "center",
   },
 });
