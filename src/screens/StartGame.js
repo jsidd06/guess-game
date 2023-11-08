@@ -68,8 +68,8 @@ const styles = StyleSheet.create({
   },
   btnCtn: {
     flexDirection: "row",
-    justifyContent: "space-around",
-    marginHorizontal: 10,
+    justifyContent: "space-between",
+    marginHorizontal: 5,
     marginVertical: 10,
     alignItems: "center",
   },
