@@ -2,7 +2,7 @@ import { Alert, StyleSheet, TextInput, View } from "react-native";
 import React, { useState } from "react";
 import PrimaryButton from "../ components/PrimaryButton";
 
-const StartGame = () => {
+const StartGame = ({ pickedUpNumber }) => {
   const [enteredNum, setEnteredNum] = useState("");
 
   const resetHandler = () => {
@@ -17,6 +17,7 @@ const StartGame = () => {
       ]);
       return;
     }
+    pickedUpNumber(confirmNum);
   };
   return (
     <View style={styles.rootContainer}>
