@@ -1,10 +1,11 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import React from "react";
+import Title from "../ components/Title";
 
 const GameScreen = () => {
   return (
     <View style={styles.screen}>
-      <Text style={{ color: "#fff" }}>GameScreen</Text>
+      <Title>GameScreen</Title>
     </View>
   );
 };

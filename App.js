@@ -3,6 +3,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import StartGame from "./src/screens/StartGame";
 import { useState } from "react";
 import GameScreen from "./src/screens/GameScreen";
+import Colors from "./src/constants/colors";
 
 export default function App() {
   const [userNumber, setUserNumber] = useState("");
@@ -16,7 +17,10 @@ export default function App() {
   }
 
   return (
-    <LinearGradient colors={["#4e0329", "#ddb52f"]} style={styles.container}>
+    <LinearGradient
+      colors={[Colors.PRIMARY800, Colors.yellow]}
+      style={styles.container}
+    >
       <ImageBackground
         style={styles.container}
         source={require("./assets/images/dice.jpg")}
