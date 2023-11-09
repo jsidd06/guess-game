@@ -1,11 +1,11 @@
 import { Alert, StyleSheet, View } from "react-native";
 import React, { useEffect, useState } from "react";
 import { Ionicons } from "@expo/vector-icons";
-import Title from "../ components/ui/Title";
-import NumberContainer from "../ components/game/NumberContainer";
-import PrimaryButton from "../ components/ui/PrimaryButton";
-import InstructionText from "../ components/ui/InstructionText";
-import Card from "../ components/ui/Card";
+import Title from "../components/ui/Title";
+import NumberContainer from "../components/game/NumberContainer";
+import PrimaryButton from "../components/ui/PrimaryButton";
+import InstructionText from "../components/ui/InstructionText";
+import Card from "../components/ui/Card";
 
 function generateRandomBetween(min, max, exclude) {
   const rndNum = Math.floor(Math.random() * (max - min)) + min;
