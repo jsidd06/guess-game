@@ -1,20 +1,45 @@
-import { StyleSheet, Text, View } from "react-native";
+import { Alert, StyleSheet, Text, View } from "react-native";
 import React, { useState } from "react";
 import Title from "../ components/ui/Title";
 import NumberContainer from "../ components/game/NumberContainer";
+import PrimaryButton from "../ components/ui/PrimaryButton";
 
-const generateRandomNum = (min, max, exclude) => {
-  const randomNum = Math.floor(Math.random() * (max - min) + min);
+function generateRandomNum(min, max, exclude) {
+  const randomNum = Math.floor(Math.random() * (max - min)) + min;
   if (randomNum === exclude) {
     return generateRandomNum(min, max, exclude);
   } else {
     return randomNum;
   }
-};
+}
+
+let minBoundary = 1;
+let maxBoundary = 100;
 
 const GameScreen = ({ userNumber }) => {
-  const initialGuess = generateRandomNum(1, 100, userNumber);
+  const initialGuess = generateRandomNum(minBoundary, maxBoundary, userNumber);
   const [currentGuess, setCurrentGuess] = useState(initialGuess);
+
+  function nextGuessHandler(direction) {
+    if (
+      (direction === "lower" && currentGuess < userNumber) ||
+      (direction === "greater" && currentGuess > userNumber)
+    ) {
+    } else {
+      Alert.alert("Don't lie!", "You know that is wrong..", [
+        { text: "Sorry!", style: "cancel" },
+      ]);
+      return;
+    }
+    if (direction === "lower") {
+      maxBoundary = currentGuess;
+    } else {
+      minBoundary = currentGuess + 1;
+    }
+    console.log(minBoundary, maxBoundary);
+    const rnNum = generateRandomNum(minBoundary, maxBoundary, currentGuess);
+    setCurrentGuess(rnNum);
+  }
 
   return (
     <View style={styles.screen}>
@@ -22,6 +47,14 @@ const GameScreen = ({ userNumber }) => {
       <NumberContainer>{currentGuess}</NumberContainer>
       <View>
         <Text>Higher or lower?</Text>
+        <View>
+          <PrimaryButton onPress={nextGuessHandler.bind(this, "lower")}>
+            -
+          </PrimaryButton>
+          <PrimaryButton onPress={nextGuessHandler.bind(this, "greater")}>
+            +
+          </PrimaryButton>
+        </View>
       </View>
     </View>
   );
