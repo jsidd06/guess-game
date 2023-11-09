@@ -14,14 +14,16 @@ export default NumberContainer;
 
 const styles = StyleSheet.create({
   container: {
-    borderWidth: 1,
+    borderWidth: 2,
     borderColor: Colors.yellow,
     padding: 24,
+    borderRadius: 8,
+    marginTop: 12,
   },
   text: {
     color: Colors.yellow,
     fontSize: 30,
-    fontWeight: "600",
     textAlign: "center",
+    fontFamily: "open-sans-bold",
   },
 });
