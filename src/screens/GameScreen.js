@@ -4,12 +4,13 @@ import Title from "../ components/ui/Title";
 import NumberContainer from "../ components/game/NumberContainer";
 import PrimaryButton from "../ components/ui/PrimaryButton";
 
-function generateRandomNum(min, max, exclude) {
-  const randomNum = Math.floor(Math.random() * (max - min)) + min;
-  if (randomNum === exclude) {
-    return generateRandomNum(min, max, exclude);
+function generateRandomBetween(min, max, exclude) {
+  const rndNum = Math.floor(Math.random() * (max - min)) + min;
+
+  if (rndNum === exclude) {
+    return generateRandomBetween(min, max, exclude);
   } else {
-    return randomNum;
+    return rndNum;
   }
 }
 
@@ -17,28 +18,37 @@ let minBoundary = 1;
 let maxBoundary = 100;
 
 const GameScreen = ({ userNumber }) => {
-  const initialGuess = generateRandomNum(minBoundary, maxBoundary, userNumber);
+  const initialGuess = generateRandomBetween(
+    minBoundary,
+    maxBoundary,
+    userNumber
+  );
   const [currentGuess, setCurrentGuess] = useState(initialGuess);
 
   function nextGuessHandler(direction) {
+    // direction => 'lower', 'greater'
     if (
       (direction === "lower" && currentGuess < userNumber) ||
       (direction === "greater" && currentGuess > userNumber)
     ) {
-    } else {
-      Alert.alert("Don't lie!", "You know that is wrong..", [
+      Alert.alert("Don't lie!", "You know that this is wrong...", [
         { text: "Sorry!", style: "cancel" },
       ]);
       return;
     }
+
     if (direction === "lower") {
       maxBoundary = currentGuess;
     } else {
       minBoundary = currentGuess + 1;
     }
-    console.log(minBoundary, maxBoundary);
-    const rnNum = generateRandomNum(minBoundary, maxBoundary, currentGuess);
-    setCurrentGuess(rnNum);
+
+    const newRndNumber = generateRandomBetween(
+      minBoundary,
+      maxBoundary,
+      currentGuess
+    );
+    setCurrentGuess(newRndNumber);
   }
 
   return (
