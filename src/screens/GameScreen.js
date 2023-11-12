@@ -33,12 +33,11 @@ const GameScreen = ({ userNumber, gameOver }) => {
 
   useEffect(() => {
     if (currentGuess === userNumber) {
-      gameOver();
+      gameOver(showGuessNumber.length);
     }
   }, [currentGuess, userNumber, gameOver]);
 
   function nextGuessHandler(direction) {
-    // direction => 'lower', 'greater'
     if (
       (direction === "lower" && currentGuess < userNumber) ||
       (direction === "greater" && currentGuess > userNumber)
@@ -64,6 +63,8 @@ const GameScreen = ({ userNumber, gameOver }) => {
     setShowGuessNumber((prev) => [newRndNumber, ...prev]);
   }
 
+  const numberLen = showGuessNumber.length;
+
   return (
     <View style={styles.screen}>
       <Title>Opponent's Guess</Title>
@@ -85,17 +86,12 @@ const GameScreen = ({ userNumber, gameOver }) => {
           </View>
         </View>
       </Card>
-      <View>
+      <View style={styles.listItem}>
         <FlatList
           data={showGuessNumber}
-          renderItem={(item) => {
-            return (
-              <GuessLogItem
-                guessRound={item.item}
-                rounderNum={item.index + 1}
-              />
-            );
-          }}
+          renderItem={({ item, index }) => (
+            <GuessLogItem guessRound={item} rounderNum={numberLen - index} />
+          )}
           keyExtractor={(item) => item}
         />
       </View>
@@ -118,5 +114,9 @@ const styles = StyleSheet.create({
   },
   btnSCtn: {
     flex: 1,
+  },
+  listItem: {
+    flex: 1,
+    padding: 12,
   },
 });
